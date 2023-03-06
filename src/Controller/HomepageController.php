@@ -14,7 +14,11 @@ class HomepageController extends AbstractController
     #[Template()]
     public function index()
     {
-        return ['controller_name' => 'HomepageController'];
+        $rep = $this->getDoctrine()->getRepository(Optreden::class);
+        $data = $rep->getAllOptredens();
+
+        dump($data);
+        die();
     }
 
     #[Route('/backhome', name: 'backhome')]    

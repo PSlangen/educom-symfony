@@ -14,6 +14,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Optreden[]    findAll()
  * @method Optreden[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+
 class OptredenRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -39,6 +40,15 @@ class OptredenRepository extends ServiceEntityRepository
         }
     }
 
+    public function getAllOptredens() {
+        $optredens = $this->findAll();
+        return($optredens); 
+    } 
+
+
+
+
+    
 //    /**
 //     * @return Optreden[] Returns an array of Optreden objects
 //     */
