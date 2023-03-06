@@ -39,7 +39,7 @@ class Optreden
 
     #[ORM\ManyToOne(inversedBy: 'optredens')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Voorprogramma $voorprogramma = null;
+    private ?Artiest $voorprogramma = null;
 
     public function getId(): ?int
     {
@@ -130,12 +130,12 @@ class Optreden
         return $this;
     }
 
-    public function getVoorprogramma(): ?Voorprogramma
+    public function getVoorprogramma(): ?Artiest
     {
         return $this->voorprogramma;
     }
 
-    public function setVoorprogramma(?Voorprogramma $voorprogramma): self
+    public function setVoorprogramma(?Artiest $voorprogramma): self
     {
         $this->voorprogramma = $voorprogramma;
 

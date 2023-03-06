@@ -25,7 +25,7 @@ class OptredenController extends AbstractController
       
     public function test() {
         
-       $this->getDoctrine()->getRepository(Optreden::class) -> deleteOptredenArtiest(4);
+       $this->getDoctrine()->getRepository(Optreden::class) -> deleteOptredenArtiest(6);
        dd("test");
     }
 }

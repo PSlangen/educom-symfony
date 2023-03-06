@@ -109,8 +109,13 @@ class OptredenRepository extends ServiceEntityRepository
         if($optreden) {
             $this->_em->remove($optreden);
             $this->_em->flush();
-            $id = $optreden -> getArtiest() -> getId();
-            $this-> artiestRepository -> deleteArtiest($id);
+            // $artiest_id = $optreden -> getArtiest() -> getId();
+            $voorprogramma_id = $optreden -> getVoorprogramma() 
+
+            if ($voorprogramma_id == true){
+                $this-> artiestRepository -> deleteArtiest($voorprogramma_id);
+            }
+
             return(true);
         }
     
