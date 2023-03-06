@@ -39,28 +39,38 @@ class ArtiestRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Artiest[] Returns an array of Artiest objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function saveArtiest($params) {
+        
+        $artiest = new Artiest();
+        $artiest->setNaam($params["naam"]);
+        $artiest->setAdres($params["adres"]);
+        $artiest->setGenre($params["genre"]);
+        $artiest->setOmschrijving($params["omschrijving"]);
+        $artiest->setAfbeeldingUrl($params["afbeelding_url"]);
+        $artiest->setWebsite($params["website"]);
 
-//    public function findOneBySomeField($value): ?Artiest
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        $this->_em->persist($artiest);
+        $this->_em->flush();
+
+        return($artiest);
+    }
+
+    public function fetchArtiest($id) {
+        return($this->find($id));
+    }
+
+    public function deleteArtiest($id) {
+    
+        $artiest = $this->find($id);
+
+        if($artiest) {
+            $this->_em->remove($artiest);
+            $this->_em->flush();
+            return(true);
+        }
+    
+        return(false);
+    }
+
+
 }
