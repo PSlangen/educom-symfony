@@ -102,24 +102,18 @@ class OptredenRepository extends ServiceEntityRepository
         return(false);
     }
 
-    public function deleteOptredenArtiest($id) {
+    public function deleteOptredensByArtiest($artiest) {
     
-        $optreden = $this->find($id);
+        $optredens = array_merge($this-> findBy (["artiest" => $artiest]),
+                                $this-> findBy (["voorprogramma" => $artiest]));
         
-        if($optreden) {
+        dump($optredens);
+
+        foreach($optredens as $optreden){
             $this->_em->remove($optreden);
-            $this->_em->flush();
-            // $artiest_id = $optreden -> getArtiest() -> getId();
-            $voorprogramma_id = $optreden -> getVoorprogramma() 
-
-            if ($voorprogramma_id == true){
-                $this-> artiestRepository -> deleteArtiest($voorprogramma_id);
-            }
-
-            return(true);
         }
-    
-        return(false);
+
+        $this->_em->flush();
     }
 
 

@@ -7,10 +7,16 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Entity\Optreden;
+use App\Entity\Artiest;
 
 
 class OptredenController extends AbstractController
 {
+
+    private $artiestRep;
+    private $optredenRep;
+
+
 
     #[Route('/optreden', name: 'app_optreden')]
     public function index(): Response
@@ -21,11 +27,16 @@ class OptredenController extends AbstractController
     }
 
     
-    #[Route('/test', name: 'test')]
-      
-    public function test() {
-        
-       $this->getDoctrine()->getRepository(Optreden::class) -> deleteOptredenArtiest(6);
-       dd("test");
+    #[Route('/test/{id}', name: 'test')]
+    public function test($id){
+        $this->artiestRep = $this->getDoctrine()->getRepository(Artiest::class);
+        $this->optredenRep = $this->getDoctrine()->getRepository(Optreden::class);
+        $artiest = $this->artiestRep->find($id);
+        $optreden = $this->optredenRep->deleteOptredensByArtiest($artiest);
+        $artiestDeleted = $this->artiestRep->deleteArtiest($artiest->getId());
+
+        dd($optreden);
     }
+
+     
 }
