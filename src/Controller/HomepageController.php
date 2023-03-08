@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Optreden;
 
 
-#[Route('/')]
+#[Route('/homepage')]
 class HomepageController extends AbstractController
 {
     #[Route('/', name: 'homepage')]
